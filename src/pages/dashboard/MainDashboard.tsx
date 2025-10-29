@@ -1,5 +1,11 @@
+import MainSelected from "../../components/selected/MainSelected";
+
 const MainDashboard = () => {
-  return <div>MainDashboard</div>;
+  return (
+    <div>
+      <MainSelected />
+    </div>
+  );
 };
 
 export default MainDashboard;

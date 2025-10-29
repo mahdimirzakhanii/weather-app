@@ -22,8 +22,8 @@ function App() {
       <Routes>
         <Route path="/" element={<MainHome />} />
         <Route path="/login" element={<MainLogin />} />
-        <Route element={<ProtectRoute />}>
           <Route path="/dashboard" element={<MainDashboard />} />
+        <Route element={<ProtectRoute />}>
         </Route>
       </Routes>
     </BrowserRouter>
