@@ -2,5 +2,7 @@
   "login": "Login",
   "enter_name": "Enter your name",
   "logout": "Logout",
-  "weather_dashboard": "Weather Dashboard"
+  "weather_dashboard": "Weather Dashboard",
+  "light": "Light",
+  "dark": "Dark"
 }

@@ -1,11 +1,10 @@
-import { useCustomeTheme } from "../../context/ThemeContext";
+import { useCustomTheme } from "../../context/ThemeContext";
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
-import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
 const Header = () => {
-  const { theme } = useCustomeTheme();
+  const { theme } = useCustomTheme();
 
   return (
     <AppBar position="absolute">

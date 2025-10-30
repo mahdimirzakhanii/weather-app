@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import SelectedTheme from "./SelectedTheme";
+import SelectedLang from "./SelectedLang";
 
 const MainSelected = () => {
   return (
@@ -14,6 +15,7 @@ const MainSelected = () => {
       }}
     >
       <SelectedTheme />
+      <SelectedLang />
     </Box>
   );
 };

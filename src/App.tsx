@@ -12,11 +12,11 @@ import MainHome from "./pages/home/MainHome";
 import MainLogin from "./pages/login/MainLogin";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import { useCustomeTheme } from "./context/ThemeContext";
+import { useCustomTheme } from "./context/ThemeContext";
 
 function App() {
   const { name } = useUser();
-  const { theme } = useCustomeTheme();
+  const { theme } = useCustomTheme();
 
   const ProtectRoute = () => {
     return name ? <Outlet /> : <Navigate to="/login" replace />;

@@ -100,10 +100,10 @@ export const ThemeProviderContext = ({
   );
 };
 
-export const useCustomeTheme = () => {
+export const useCustomTheme = (): ThemeType => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error("Error Theme");
+    throw new Error("Error in useCustomTheme");
   }
   return context;
 };

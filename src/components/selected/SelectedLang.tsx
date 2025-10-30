@@ -1,25 +1,26 @@
 import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { useCustomTheme } from "../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
+import { useLang } from "../../context/LanguageContext";
 
-const SelectedTheme = () => {
-  const { mode, setMode } = useCustomTheme();
-  const { t } = useTranslation();
+const SelectedLang = () => {
+  const { lang, setLang } = useLang();
+  const { i18n } = useTranslation(); 
 
-  const handleThem = (
+  const handleLanguage = (
     event: React.SyntheticEvent,
-    newValue: "dark" | "light"
+    newValue: "fa" | "en"
   ) => {
-    setMode(newValue);
-    localStorage.setItem("theme", newValue);
+    setLang(newValue);
+    i18n.changeLanguage(newValue);
+    localStorage.setItem("lang", newValue);
   };
 
   return (
     <Tabs
-      value={mode}
-      onChange={handleThem}
+      value={lang}
+      onChange={handleLanguage}
       variant="scrollable"
       aria-label="secondary tabs example"
       sx={{
@@ -35,10 +36,10 @@ const SelectedTheme = () => {
         },
       }}
     >
-      <Tab label={t("light")} value="light" />
-      <Tab label={t("dark")} value="dark" />
+      <Tab label="فارسی" value="fa" />
+      <Tab label="English" value="en" />
     </Tabs>
   );
 };
 
-export default SelectedTheme;
+export default SelectedLang;
