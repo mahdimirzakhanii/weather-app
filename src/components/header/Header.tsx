@@ -2,6 +2,7 @@ import { useCustomTheme } from "../../context/ThemeContext";
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import TextField from "@mui/material/TextField";
+import MainSelected from "../selected/MainSelected";
 
 const Header = () => {
   const { theme } = useCustomTheme();
@@ -32,11 +33,14 @@ const Header = () => {
           <img src="/image/header/image.png" alt="" />
           <span>Weather Dashboard</span>
         </Box>
-        <TextField
-          id="outlined-basic"
-          label="Search Your Location"
-          variant="outlined"
-        />
+        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+          <TextField
+            id="outlined-basic"
+            label="Search Your Location"
+            variant="outlined"
+          />
+          <MainSelected />
+        </Box>
       </Box>
     </AppBar>
   );

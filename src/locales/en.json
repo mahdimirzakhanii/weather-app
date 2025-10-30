@@ -4,5 +4,7 @@
   "logout": "Logout",
   "weather_dashboard": "Weather Dashboard",
   "light": "Light",
-  "dark": "Dark"
+  "dark": "Dark",
+  "mode": "Mode",
+  "language": "Language"
 }

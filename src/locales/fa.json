@@ -4,5 +4,7 @@
   "logout": "خروج",
   "weather_dashboard": "پنل آب‌وهوا",
   "light": "روشن",
-  "dark": "تاریک"
+  "dark": "تاریک",
+  "mode": "مود",
+  "language": "زبان"
 }

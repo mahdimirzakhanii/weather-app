@@ -1,44 +1,79 @@
-import * as React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import { useTranslation } from "react-i18next";
 import { useLang } from "../../context/LanguageContext";
+import Box from "@mui/material/Box";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import ToggleButton from "@mui/material/ToggleButton";
 
 const SelectedLang = () => {
   const { lang, setLang } = useLang();
-  const { i18n } = useTranslation(); 
+  const { i18n, t } = useTranslation();
 
-  const handleLanguage = (
-    event: React.SyntheticEvent,
+  const handleAlignment = (
+    event: React.MouseEvent<HTMLElement>,
     newValue: "fa" | "en"
   ) => {
     setLang(newValue);
     i18n.changeLanguage(newValue);
     localStorage.setItem("lang", newValue);
   };
-
   return (
-    <Tabs
-      value={lang}
-      onChange={handleLanguage}
-      variant="scrollable"
-      aria-label="secondary tabs example"
+    <Box
       sx={{
         display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
+        flexDirection: "column",
+        gap: 1,
+        minWidth: "220px",
         width: "100%",
-        "& .MuiTab-root:focus": {
-          outline: "none",
-        },
-        "& .Mui-selected": {
-          outline: "none",
-        },
       }}
     >
-      <Tab label="فارسی" value="fa" />
-      <Tab label="English" value="en" />
-    </Tabs>
+      <span style={{ textAlign: lang === "fa" ? "end" : "start" }}>
+        {t("language")}
+      </span>
+
+      <ToggleButtonGroup
+        value={lang}
+        exclusive
+        onChange={handleAlignment}
+        aria-label="text alignment"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+          "& .MuiToggleButton-root": {
+            border: "1px solid",
+            width: "100%",
+            borderColor: "surface.500",
+            minHeight: 33,
+            padding: 0,
+            fontSize: 14,
+            fontWeight: 400,
+            color: "surface.500",
+            transition: "all 0.2s ease",
+            "&.Mui-selected": {
+              borderColor: "info.500",
+              color: "info.500",
+              backgroundColor: "transparent",
+            },
+            "&:focus": {
+              outline: "none",
+            },
+            "&:hover": {
+              backgroundColor: "transparent",
+            },
+            "&:not(:last-of-type)": {
+              borderRight: "none",
+            },
+          },
+        }}
+      >
+        <ToggleButton value="fa" aria-label="left">
+          فارسی
+        </ToggleButton>
+        <ToggleButton value="en" aria-label="right">
+          English
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Box>
   );
 };
 
