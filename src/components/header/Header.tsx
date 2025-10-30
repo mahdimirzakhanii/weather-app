@@ -1,9 +1,12 @@
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import { useCustomeTheme } from "../../context/ThemeContext";
+import Box from "@mui/material/Box";
+import AppBar from "@mui/material/AppBar";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 
 const Header = () => {
-  const { theme, muiTheme } = useCustomeTheme();
+  const { theme } = useCustomeTheme();
+
   return (
     <AppBar position="absolute">
       <Box
@@ -14,11 +17,27 @@ const Header = () => {
           alignItems: "center",
           position: "fixed",
           zIndex: "50",
-          backgroundColor: muiTheme.palette.background.default,
-          color: muiTheme.palette.text.primary,
+          padding: 2,
+          backgroundColor: theme.palette.background.default,
+          color: theme.palette.text.primary,
+          boxShadow: "0px 4px 10px 0px #00000026",
         }}
       >
-        حالت فعلی: {theme}
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            alignItems: "center",
+          }}
+        >
+          <img src="/image/header/image.png" alt="" />
+          <span>Weather Dashboard</span>
+        </Box>
+        <TextField
+          id="outlined-basic"
+          label="Search Your Location"
+          variant="outlined"
+        />
       </Box>
     </AppBar>
   );

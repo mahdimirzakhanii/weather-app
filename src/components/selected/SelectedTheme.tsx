@@ -4,19 +4,19 @@ import Tab from "@mui/material/Tab";
 import { useCustomeTheme } from "../../context/ThemeContext";
 
 const SelectedTheme = () => {
-  const { theme, setTheme } = useCustomeTheme();
+  const { mode, setMode } = useCustomeTheme();
 
   const handleThem = (
     event: React.SyntheticEvent,
     newValue: "dark" | "light"
   ) => {
-    setTheme(newValue);
+    setMode(newValue);
+    localStorage.setItem("theme", newValue);
   };
 
-  console.log(theme);
   return (
     <Tabs
-      value={theme}
+      value={mode}
       onChange={handleThem}
       variant="scrollable"
       aria-label="secondary tabs example"

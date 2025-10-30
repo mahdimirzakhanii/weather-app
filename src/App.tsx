@@ -12,9 +12,11 @@ import MainHome from "./pages/home/MainHome";
 import MainLogin from "./pages/login/MainLogin";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import { useCustomeTheme } from "./context/ThemeContext";
 
 function App() {
   const { name } = useUser();
+  const { theme } = useCustomeTheme();
 
   const ProtectRoute = () => {
     return name ? <Outlet /> : <Navigate to="/login" replace />;
@@ -24,10 +26,11 @@ function App() {
     <Box
       sx={{
         width: "100%",
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent:"space-between",
-        minHeight: "100vh",
+        justifyContent: "space-between",
+        backgroundColor: theme.palette.background.default,
       }}
     >
       <Box>

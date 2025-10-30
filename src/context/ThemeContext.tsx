@@ -1,13 +1,13 @@
 import { blue, green, orange, red } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import React, { createContext, useContext, useMemo, useState } from "react";
-import type { Theme } from "@mui/material/styles";
+import type { PaletteMode, Theme } from "@mui/material/styles";
 import "@mui/material/styles";
 
 interface ThemeType {
-  theme: "dark" | "light";
-  setTheme: (theme: "dark" | "light") => void;
-  muiTheme: Theme;
+  mode: PaletteMode;
+  setMode: (mode: PaletteMode) => void;
+  theme: Theme;
 }
 
 declare module "@mui/material/styles" {
@@ -47,13 +47,16 @@ export const ThemeProviderContext = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [mode, setMode] = useState<PaletteMode>(() => {
+    const stored = localStorage.getItem("theme");
+    return stored === "dark" || stored === "light" ? stored : "light";
+  });
 
-  const muiTheme = useMemo(
+  const theme = useMemo(
     () =>
       createTheme({
         palette: {
-          mode: theme,
+          mode: mode,
           surface: {
             50: "#FFFFFF",
             100: "#F5F9FC",
@@ -83,16 +86,16 @@ export const ThemeProviderContext = ({
           success: green,
           info: blue,
           background: {
-            default: theme === "light" ? "#F3FAFE" : "#151D32",
+            default: mode === "light" ? "#F3FAFE" : "#151D32",
           },
         },
       }),
-    [theme]
+    [mode]
   );
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, muiTheme }}>
-      <ThemeProvider theme={muiTheme}>{children}</ThemeProvider>
+    <ThemeContext.Provider value={{ mode, setMode, theme }}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   );
 };
