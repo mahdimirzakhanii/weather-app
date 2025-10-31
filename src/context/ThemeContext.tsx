@@ -55,6 +55,9 @@ export const ThemeProviderContext = ({
   const theme = useMemo(
     () =>
       createTheme({
+        typography: {
+          fontFamily: "inter, sans-serif",
+        },
         palette: {
           mode: mode,
           surface: {
@@ -107,4 +110,3 @@ export const useCustomTheme = (): ThemeType => {
   }
   return context;
 };
-

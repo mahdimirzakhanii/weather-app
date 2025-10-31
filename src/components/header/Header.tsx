@@ -38,7 +38,34 @@ const Header = () => {
             id="outlined-basic"
             label="Search Your Location"
             variant="outlined"
+            sx={{
+              width: 280,
+              "& .MuiOutlinedInput-root": {
+                height: "42px",
+                "& fieldset": {
+                  borderColor: "#BBC1C4",
+                },
+                "&:hover fieldset": {
+                  borderColor: "#BBC1C4 !important",
+                },
+              },
+              "& .MuiOutlinedInput-input": {
+                padding: "10px 12px",
+                fontSize: "14px",
+                color: "#444",
+              },
+              "& .MuiInputLabel-root": {
+                fontSize: "14px",
+                top: "50%",
+                transform: "translate(14px, -50%)",
+                transition: "all 0.2s ease",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                transform: "translate(14px, -30px) scale(0.85)",
+              },
+            }}
           />
+
           <MainSelected />
         </Box>
       </Box>

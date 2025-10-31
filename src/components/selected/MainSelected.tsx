@@ -26,15 +26,19 @@ const MainSelected = () => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         sx={{
-          color: "#BBC1C4",
-          borderWidth: 2,
-          borderStyle: "solid",
-          width: "20px",
+          minWidth: "40px",
+          height: "40px",
           padding: 0,
-          borderColor: "#BBC1C4",
+          backgroundColor: open ? "primary.100" : "transparent",
+          borderWidth: 1,
+          borderStyle: "solid",
+          borderColor: open ? "primary.500" : "#BBC1C4",
         }}
       >
-        <Icon icon="material-symbols-light:settings-outline" />
+        <Icon
+          style={{ fontSize: "24px", color: open ? "#009CD8" : "#BBC1C4" }}
+          icon="material-symbols-light:settings-outline"
+        />
       </Button>
       <Menu
         id="basic-menu"

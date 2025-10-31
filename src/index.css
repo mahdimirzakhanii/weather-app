@@ -3,3 +3,35 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/font/Inter/static/Inter_18pt-Thin.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/font/Inter/static/Inter_18pt-Regular.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/font/Inter/static/Inter_18pt-Medium.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/font/Inter/static/Inter_18pt-Bold.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
