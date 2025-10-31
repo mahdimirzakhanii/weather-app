@@ -1,31 +1,35 @@
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Box from "@mui/material/Box";
 import { useCustomTheme } from "../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
- 
+
 const Slider = ({ myArray }) => {
   const { mode } = useCustomTheme();
   const { t } = useTranslation();
   console.log(myArray);
   return (
     <Swiper
-      slidesPerView={10}
+      slidesPerView={3}
       spaceBetween={10}
       pagination={{
         clickable: true,
       }}
       breakpoints={{
         640: {
-          slidesPerView: 2,
+          slidesPerView: 4,
           spaceBetween: 20,
         },
         768: {
-          slidesPerView: 4,
+          slidesPerView: 6,
           spaceBetween: 30,
         },
         1024: {
+          slidesPerView: 9,
+          spaceBetween: 10,
+        },
+        1560: {
           slidesPerView: 11,
           spaceBetween: 10,
         },
