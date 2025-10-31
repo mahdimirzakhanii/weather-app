@@ -4,7 +4,6 @@ import React, { createContext, useContext, useMemo, useState } from "react";
 import type { PaletteMode, Theme } from "@mui/material/styles";
 import "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import { useLang } from "./LanguageContext";
 
 interface ThemeType {
   mode: PaletteMode;

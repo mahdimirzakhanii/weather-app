@@ -1,9 +1,9 @@
-import MainSelected from "../../components/selected/MainSelected";
+import MainCurrentData from "../../components/current-data/MainCurrentData";
 
 const MainDashboard = () => {
   return (
     <div>
-      <MainSelected />
+      <MainCurrentData />
     </div>
   );
 };

@@ -6,6 +6,15 @@
   "light": "روشن",
   "dark": "تاریک",
   "mode": "مود",
+  "search-lable": "مکان مورد نظر را جستوجو کنید",
   "language": "زبان",
-  "exit": "خروج"
+  "saturday": "شنبه",
+  "sunday": "یک‌‌شنبه",
+  "monday": "دوشنبه",
+  "tuesday": "سه‌شنبه",
+  "wednesday": "چهارشنبه",
+  "thursday": "پنج‌شنبه",
+  "friday": "جمعه",
+  "high": "بیشینه",
+  "low": "کمینه"
 }

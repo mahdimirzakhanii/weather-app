@@ -50,10 +50,13 @@ const Header = () => {
         >
           <TextField
             id="outlined-basic"
-            label="Search Your Location"
+            label={t("search-lable")}
             variant="outlined"
             size="small"
             sx={{
+              "& input": {
+                direction: "rtl",
+              },
               "& .MuiOutlinedInput-root": {
                 height: 40,
                 width: "290px",

@@ -6,6 +6,16 @@
   "light": "Light",
   "dark": "Dark",
   "mode": "Mode",
+  "search-lable": "Search Your Location",
   "language": "Language",
-  "exit": "Exit"
+  "exit": "Exit",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Whursday",
+  "friday": "Friday",
+  "high": "High",
+  "low": "Low"
 }
