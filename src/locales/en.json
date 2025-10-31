@@ -17,5 +17,7 @@
   "thursday": "Whursday",
   "friday": "Friday",
   "high": "High",
-  "low": "Low"
+  "low": "Low",
+  "cloudy": "Cloudy",
+  "feels-like": "Feels Like"
 }

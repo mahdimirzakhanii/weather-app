@@ -90,6 +90,9 @@ export const ThemeProviderContext = ({
           warning: orange,
           success: green,
           info: blue,
+          text: {
+            primary: mode === "light" ? "#003464" : "#F3F4F7",
+          },
           background: {
             default: mode === "light" ? "#F3FAFE" : "#151D32",
           },

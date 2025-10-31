@@ -75,7 +75,6 @@ const Header = () => {
               },
             }}
           />
-
           <MainSelected />
         </Box>
       </Box>
