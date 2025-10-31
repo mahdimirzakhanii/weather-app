@@ -3,9 +3,13 @@ import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import TextField from "@mui/material/TextField";
 import MainSelected from "../selected/MainSelected";
+import { useTranslation } from "react-i18next";
+import { useLang } from "../../context/LanguageContext";
 
 const Header = () => {
   const { theme } = useCustomTheme();
+  const { lang } = useLang();
+  const { t } = useTranslation();
 
   return (
     <AppBar position="absolute">
@@ -14,6 +18,7 @@ const Header = () => {
           width: "100%",
           display: "flex",
           justifyContent: "space-between",
+          flexDirection: lang === "fa" ? "row-reverse" : "row",
           alignItems: "center",
           position: "fixed",
           zIndex: "50",
@@ -28,20 +33,30 @@ const Header = () => {
             display: "flex",
             gap: 2,
             alignItems: "center",
+            flexDirection: lang === "fa" ? "row-reverse" : "row",
           }}
         >
           <img src="/image/header/image.png" alt="" />
-          <span>Weather Dashboard</span>
+          <span>{t("weather_dashboard")}</span>
         </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2,
+            flexDirection: lang === "fa" ? "row-reverse" : "row",
+          }}
+        >
           <TextField
             id="outlined-basic"
             label="Search Your Location"
             variant="outlined"
+            size="small"
             sx={{
-              width: 280,
               "& .MuiOutlinedInput-root": {
-                height: "42px",
+                height: 40,
+                width: "290px",
                 "& fieldset": {
                   borderColor: "#BBC1C4",
                 },
@@ -50,18 +65,10 @@ const Header = () => {
                 },
               },
               "& .MuiOutlinedInput-input": {
-                padding: "10px 12px",
+                padding: "8px 12px",
+                lineHeight: "24px",
                 fontSize: "14px",
-                color: "#444",
-              },
-              "& .MuiInputLabel-root": {
-                fontSize: "14px",
-                top: "50%",
-                transform: "translate(14px, -50%)",
-                transition: "all 0.2s ease",
-              },
-              "& .MuiInputLabel-root.Mui-focused": {
-                transform: "translate(14px, -30px) scale(0.85)",
+                boxSizing: "border-box",
               },
             }}
           />

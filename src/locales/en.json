@@ -6,5 +6,6 @@
   "light": "Light",
   "dark": "Dark",
   "mode": "Mode",
-  "language": "Language"
+  "language": "Language",
+  "exit": "Exit"
 }

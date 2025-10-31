@@ -2,9 +2,10 @@
   "login": "ورود",
   "enter_name": "نام خود را وارد کنید",
   "logout": "خروج",
-  "weather_dashboard": "پنل آب‌وهوا",
+  "weather_dashboard": "داشبورد آب‌وهوا",
   "light": "روشن",
   "dark": "تاریک",
   "mode": "مود",
-  "language": "زبان"
+  "language": "زبان",
+  "exit": "خروج"
 }

@@ -6,8 +6,14 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Icon } from "@iconify/react";
 import Divider from "@mui/material/Divider";
+import { useCustomTheme } from "../../context/ThemeContext";
+import { useTranslation } from "react-i18next";
+import { useLang } from "../../context/LanguageContext";
 
 const MainSelected = () => {
+  const { mode } = useCustomTheme();
+  const { lang } = useLang();
+  const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -75,21 +81,29 @@ const MainSelected = () => {
 
         <Button
           variant="text"
-          sx={{
+          dir={lang === "fa" ? "rtl" : "ltr"}
+          sx={(theme) => ({
             width: "100%",
             paddingX: 3,
             display: "flex",
+            gap: lang === "fa" ? 2 : 0,
             justifyContent: "start",
-            color: "surface.900",
-          }}
+            color: theme.palette.text.primary,
+            "&:hover": {
+              backgroundColor: theme.palette.action.hover,
+            },
+          })}
           startIcon={
             <Icon
-              style={{ color: "#0008" }}
+              style={{
+                color: mode === "light" ? "#0008" : "#fff",
+                rotate: lang === "fa" ? "180deg" : "0deg",
+              }}
               icon="fluent:arrow-exit-32-regular"
             />
           }
         >
-          Exit
+          {t("exit")}
         </Button>
       </Menu>
     </div>
