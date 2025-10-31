@@ -32,9 +32,11 @@ function App() {
   return (
     <Box
       sx={{
-        width: "100%",
+        width: "95%",
         minHeight: "100vh",
         display: "flex",
+        marginX:"auto",
+        marginTop:'70px',
         flexDirection: "column",
         justifyContent: "space-between",
         backgroundColor: theme.palette.background.default,

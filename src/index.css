@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: 'Inter';
   src: url('/font/Inter/static/Inter_18pt-Thin.ttf') format('truetype');
@@ -57,3 +56,4 @@ body[lang="fa"] {
 body[lang="en"] {
   font-family: "Inter", sans-serif;
 }
+

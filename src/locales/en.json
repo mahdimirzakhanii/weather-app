@@ -9,6 +9,7 @@
   "search-lable": "Search Your Location",
   "language": "Language",
   "exit": "Exit",
+  "today": "Today",
   "saturday": "Saturday",
   "sunday": "Sunday",
   "monday": "Monday",
@@ -19,5 +20,6 @@
   "high": "High",
   "low": "Low",
   "cloudy": "Cloudy",
-  "feels-like": "Feels Like"
+  "feels-like": "Feels Like",
+  "two-week-forecast": "2 weeks Forecast"
 }
