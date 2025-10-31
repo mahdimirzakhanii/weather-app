@@ -12,9 +12,11 @@ const SelectedLang = () => {
     event: React.MouseEvent<HTMLElement>,
     newValue: "fa" | "en"
   ) => {
-    setLang(newValue);
-    i18n.changeLanguage(newValue);
-    localStorage.setItem("lang", newValue);
+    if (newValue !== null) {
+      setLang(newValue);
+      i18n.changeLanguage(newValue);
+      localStorage.setItem("lang", newValue);
+    }
   };
   return (
     <Box

@@ -7,6 +7,9 @@ import { ThemeProviderContext } from "./context/ThemeContext.tsx";
 import { UserProvider } from "./context/UserContext.tsx";
 import { LangProvider } from "./context/LanguageContext.tsx";
 
+
+
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <UserProvider>

@@ -3,6 +3,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import React, { createContext, useContext, useMemo, useState } from "react";
 import type { PaletteMode, Theme } from "@mui/material/styles";
 import "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
+import { useLang } from "./LanguageContext";
 
 interface ThemeType {
   mode: PaletteMode;
@@ -51,12 +53,13 @@ export const ThemeProviderContext = ({
     const stored = localStorage.getItem("theme");
     return stored === "dark" || stored === "light" ? stored : "light";
   });
+  const lang = localStorage.getItem("lang");
 
   const theme = useMemo(
     () =>
       createTheme({
         typography: {
-          fontFamily: "inter, sans-serif",
+          fontFamily: lang === "fa" ? "IranYekan" : "Inter",
         },
         palette: {
           mode: mode,
@@ -98,7 +101,11 @@ export const ThemeProviderContext = ({
 
   return (
     <ThemeContext.Provider value={{ mode, setMode, theme }}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>
+        {" "}
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
     </ThemeContext.Provider>
   );
 };

@@ -13,14 +13,21 @@ import MainLogin from "./pages/login/MainLogin";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { useCustomTheme } from "./context/ThemeContext";
+// import { useTranslation } from "react-i18next";
 
 function App() {
   const { name } = useUser();
   const { theme } = useCustomTheme();
+  // const { i18n } = useTranslation();
 
   const ProtectRoute = () => {
     return name ? <Outlet /> : <Navigate to="/login" replace />;
   };
+
+  // useEffect(() => {
+  //   document.dir = i18n.language === "fa" ? "rtl" : "ltr";
+  //   document.documentElement.lang = i18n.language;
+  // }, [i18n.language]);
 
   return (
     <Box
