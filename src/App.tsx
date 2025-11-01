@@ -11,6 +11,7 @@ import { useCustomTheme } from "./context/ThemeContext";
 import useDataContext from "./context/DataContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useLang } from "./context/LanguageContext";
 
 export interface Location {
   latitude: number;
@@ -19,10 +20,11 @@ export interface Location {
 
 function App() {
   const { name } = useUser();
+  const { lang } = useLang();
   const { theme } = useCustomTheme();
   const { setFullData } = useDataContext();
   const [search, setSearch] = useState<string>("");
-  const [textFa, setTextFa] = useState<boolean>(false);
+  const [textFa, setTextFa] = useState<boolean>(lang === "fa" ? true : false);
   const [location, setLocation] = useState<Location | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +38,6 @@ function App() {
       },
       (error) => {
         console.error(error);
-        // setShowManualSearch(true);
         setLoading(false);
         toast.error("Failed to get location", {
           position: "top-center",
@@ -112,7 +113,7 @@ function App() {
         backgroundColor: theme.palette.background.default,
       }}
     >
-      <Header setTextFa={setTextFa}/>
+      <Header setTextFa={setTextFa} />
 
       <Box
         component="main"

@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
 import { useLang } from "../../context/LanguageContext";
 import useDataContext from "../../context/DataContext";
+import { getDateTime } from "../date/date";
 
 const MainCurrentData = () => {
   const { mode } = useCustomTheme();
@@ -11,6 +12,8 @@ const MainCurrentData = () => {
   const { fullData } = useDataContext();
   const { t } = useTranslation();
 
+  const date = lang === "fa" ? getDateTime("fa") : getDateTime("en");
+  console.log();
   return (
     <Box
       sx={{
@@ -54,7 +57,7 @@ const MainCurrentData = () => {
             {fullData?.name}
           </span>
         </Box>
-        <span style={{ fontSize: "35px" }}>{t("monday")}</span>
+        <span style={{ fontSize: "35px" }}>{date?.weekday}</span>
         <Box
           sx={{
             width: "100%",
@@ -64,15 +67,38 @@ const MainCurrentData = () => {
             gap: 2,
           }}
         >
-          <span
-            style={{
+          <Box
+            sx={{
               fontSize: "14px",
               fontWeight: 400,
+              display: "flex",
+              alignItems: "center",
+              gap: "3px",
             }}
           >
-            {t("24 Dec, 2023")}
-          </span>
-          <span style={{ fontSize: "14px", fontWeight: 400 }}>11:45 AM </span>
+            <span>{date?.year}</span>
+            <span>{date?.monthName}</span>
+            <span>{date?.day}</span>
+            <span>{date?.weekday}</span>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row-reverse",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
+            <span
+              style={{
+                fontSize: "14px",
+                fontWeight: 400,
+              }}
+            >
+              {date?.hour + ":" + date?.minute}
+            </span>
+            {/* <span>{date?.period}</span> */}
+          </Box>
         </Box>
         <Box
           sx={{
@@ -83,7 +109,9 @@ const MainCurrentData = () => {
             gap: 1,
           }}
         >
-          <span style={{ fontSize: "40px" }}>{20}</span>
+          <span style={{ fontSize: "40px" }}>
+            {fullData?.main?.temp.toString().slice(0, 2)}
+          </span>
           <span style={{ fontSize: "36px" }}>°</span>
           <span style={{ fontSize: "40px" }}>C</span>
         </Box>
@@ -97,10 +125,12 @@ const MainCurrentData = () => {
           }}
         >
           <span style={{ fontSize: "14px", display: "flex", gap: "30px" }}>
-            {t("high")} : {20}
+            {t("high")} :
+            {fullData?.main?.temp_max && Math.trunc(fullData?.main?.temp_max)}
           </span>
           <span style={{ fontSize: "14px", display: "flex", gap: "30px" }}>
-            {t("low")} : {20}
+            {t("low")} :
+            {fullData?.main?.temp_min && Math.trunc(fullData?.main?.temp_min)}
           </span>
         </Box>
       </Box>
@@ -114,7 +144,7 @@ const MainCurrentData = () => {
       >
         <img src="/image/dashboard/cloudy.png" alt="" />
         <span style={{ fontSize: "32px", fontWeight: "400" }}>
-          {t("cloudy")}
+          {fullData?.weather[0]?.description}
         </span>
         <span
           style={{

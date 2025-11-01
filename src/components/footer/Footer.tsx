@@ -4,16 +4,14 @@ import { useCustomTheme } from "../../context/ThemeContext";
 import Box from "@mui/material/Box";
 import { Icon } from "@iconify/react";
 import { LuCalendarDays } from "react-icons/lu";
-import { getEnglishDate, getPersianDate } from "../date/date";
+import { getDateTime } from "../date/date";
 
 const Footer = () => {
   const { lang } = useLang();
   const { theme, mode } = useCustomTheme();
   const { t } = useTranslation();
-  const dateFa = getPersianDate();
-  const dateEn = getEnglishDate();
 
-  const date = lang === "fa" ? dateFa : dateEn;
+  const date = lang === "fa" ? getDateTime("fa") : getDateTime("en");
   return (
     <Box
       sx={{

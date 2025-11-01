@@ -1,11 +1,38 @@
-// تابع فارسی (شمسی)
-export const getPersianDate = () => {
-  const now = new Date();
-  const toPersian = (str: string) =>
-    str.replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[parseInt(d)]);
+export type DateTimeLang = "fa" | "en";
 
-  // تاریخ
-  const dateFormatter = new Intl.DateTimeFormat("fa-IR", {
+export interface DateTimeResult {
+  full: string;
+  year: string;
+  month: string;
+  day: string;
+  weekday: string;
+  monthName: string;
+
+  time: string;
+  hour: string;
+  minute: string;
+  second: string;
+  period?: string;
+
+  hourNum: number;
+  minuteNum: number;
+  secondNum: number;
+}
+
+export const getDateTime = (lang: DateTimeLang = "en"): DateTimeResult => {
+  const now = new Date();
+  const isFa = lang === "fa";
+  const locale = isFa ? "fa-IR" : "en-US";
+
+  const toPersian = (str: string): string =>
+    isFa ? str.replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[parseInt(d)]) : str;
+
+  const toLatin = (str: string): string =>
+    isFa
+      ? str.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d).toString())
+      : str;
+
+  const dateFormatter = new Intl.DateTimeFormat(locale, {
     weekday: "long",
     year: "numeric",
     month: "numeric",
@@ -13,67 +40,62 @@ export const getPersianDate = () => {
   });
   const dateParts = dateFormatter.formatToParts(now);
 
-  // ساعت (۲۴ ساعته)
-  const timeFormatter = new Intl.DateTimeFormat("fa-IR", {
+  const timeFormatter = new Intl.DateTimeFormat(locale, {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
-    hour12: false, // 24h
+    hour12: true,
+    dayPeriod: "short",
   });
   const timeParts = timeFormatter.formatToParts(now);
+
+  // استخراج مقادیر
+  const get = (type: string) =>
+    (
+      dateParts.find((p) => p.type === type) ||
+      timeParts.find((p) => p.type === type)
+    )?.value || "";
+
+  const hourRaw = timeParts.find((p) => p.type === "hour")?.value || "";
+  const minuteRaw = timeParts.find((p) => p.type === "minute")?.value || "";
+  const secondRaw = timeParts.find((p) => p.type === "second")?.value || "";
+  const periodRaw = timeParts.find((p) => p.type === "dayPeriod")?.value || "";
+
+  // تبدیل برای نمایش
+  const hour = toPersian(hourRaw);
+  const minute = toPersian(minuteRaw);
+  const second = toPersian(secondRaw);
+  // تبدیل period برای فارسی
+  const period = isFa
+    ? periodRaw === "ق.ظ"
+      ? "بعدازظهر"
+      : "قبل‌ازظهر"
+    : periodRaw;
+
+  // تبدیل برای محاسبه عددی
+  const hourNum = Number(toLatin(hourRaw));
+  const minuteNum = Number(toLatin(minuteRaw));
+  const secondNum = Number(toLatin(secondRaw));
 
   return {
     // تاریخ
     full: toPersian(dateFormatter.format(now)),
-    year: toPersian(dateParts.find((p) => p.type === "year")?.value || ""),
-    month: toPersian(dateParts.find((p) => p.type === "month")?.value || ""),
-    day: toPersian(dateParts.find((p) => p.type === "day")?.value || ""),
-    weekday: dateParts.find((p) => p.type === "weekday")?.value || "",
-    monthName: new Intl.DateTimeFormat("fa-IR", { month: "long" }).format(now),
+    year: toPersian(get("year")),
+    month: toPersian(get("month")),
+    day: toPersian(get("day")),
+    weekday: get("weekday"),
+    monthName: new Intl.DateTimeFormat(locale, { month: "long" }).format(now),
 
     // ساعت
-    time: toPersian(timeFormatter.format(now)), // "۱۴:۳۵:۲۲"
-    hour: toPersian(timeParts.find((p) => p.type === "hour")?.value || ""),
-    minute: toPersian(timeParts.find((p) => p.type === "minute")?.value || ""),
-    second: toPersian(timeParts.find((p) => p.type === "second")?.value || ""),
-  };
-};
-// تابع انگلیسی (میلادی)
-export const getEnglishDate = () => {
-  const now = new Date();
+    time: `${hour}:${minute} ${period}`,
+    hour,
+    minute,
+    second,
+    period: periodRaw ? period : undefined,
 
-  // تاریخ
-  const dateFormatter = new Intl.DateTimeFormat("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-  });
-  const dateParts = dateFormatter.formatToParts(now);
-
-  // ساعت (۱۲ ساعته با AM/PM)
-  const timeFormatter = new Intl.DateTimeFormat("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: true, // 12h
-  });
-  const timeParts = timeFormatter.formatToParts(now);
-
-  return {
-    // تاریخ
-    full: dateFormatter.format(now), // "Saturday, 11/1/2025"
-    year: dateParts.find((p) => p.type === "year")?.value || "",
-    month: dateParts.find((p) => p.type === "month")?.value || "",
-    day: dateParts.find((p) => p.type === "day")?.value || "",
-    weekday: dateParts.find((p) => p.type === "weekday")?.value || "",
-    monthName: new Intl.DateTimeFormat("en-US", { month: "long" }).format(now),
-
-    // ساعت
-    time: timeFormatter.format(now), // "02:35:22 PM"
-    hour: timeParts.find((p) => p.type === "hour")?.value || "",
-    minute: timeParts.find((p) => p.type === "minute")?.value || "",
-    second: timeParts.find((p) => p.type === "second")?.value || "",
-    period: timeParts.find((p) => p.type === "dayPeriod")?.value || "", // "PM"
+    // عددی
+    hourNum,
+    minuteNum,
+    secondNum,
   };
 };
