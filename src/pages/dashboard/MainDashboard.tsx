@@ -3,6 +3,8 @@ import MainCurrentData from "../../components/current-data/MainCurrentData";
 import MainTwoWeekData from "../../components/two-week-data/MainTwoWeekData";
 import { useLang } from "../../context/LanguageContext";
 import MainChart from "../../components/chart/MainChart";
+import type { Location } from "../../App";
+
 type Props = {
   location: Location | null;
   search: string;

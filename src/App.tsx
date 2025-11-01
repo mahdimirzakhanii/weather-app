@@ -102,6 +102,7 @@ function App() {
   // };
 
   return (
+    <>
     <Box
       sx={{
         minHeight: "100vh",
@@ -147,6 +148,8 @@ function App() {
       </Box>
 
       <Footer />
+      </Box>
+
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -160,7 +163,7 @@ function App() {
         theme="dark"
         transition={Slide}
       />
-    </Box>
+    </>
   );
 }
 
