@@ -9,8 +9,11 @@ import Divider from "@mui/material/Divider";
 import { useCustomTheme } from "../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { useLang } from "../../context/LanguageContext";
+interface Props {
+  setTextFa: (value: boolean) => void;
+}
 
-const MainSelected = () => {
+const MainSelected = ({ setTextFa }: Props) => {
   const { mode } = useCustomTheme();
   const { lang } = useLang();
   const { t } = useTranslation();
@@ -69,7 +72,7 @@ const MainSelected = () => {
         />
 
         <MenuItem>
-          <SelectedLang />
+          <SelectedLang setTextFa={setTextFa} />
         </MenuItem>
 
         <Divider

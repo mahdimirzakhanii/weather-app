@@ -3,8 +3,14 @@ import MainCurrentData from "../../components/current-data/MainCurrentData";
 import MainTwoWeekData from "../../components/two-week-data/MainTwoWeekData";
 import { useLang } from "../../context/LanguageContext";
 import MainChart from "../../components/chart/MainChart";
+type Props = {
+  location: Location | null;
+  search: string;
+  textFa: boolean;
+  setSearch: (value: string) => void;
+};
 
-const MainDashboard = () => {
+const MainDashboard = ({ setSearch, loading, location }: Props) => {
   const { lang } = useLang();
   return (
     <Box

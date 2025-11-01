@@ -3,11 +3,14 @@ import { useCustomTheme } from "../../context/ThemeContext";
 import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
 import { useLang } from "../../context/LanguageContext";
+import useDataContext from "../../context/DataContext";
 
 const MainCurrentData = () => {
   const { mode } = useCustomTheme();
   const { lang } = useLang();
+  const { fullData } = useDataContext();
   const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -48,7 +51,7 @@ const MainCurrentData = () => {
         >
           <Icon icon="subway:location-1" style={{ fontSize: "28px" }} />
           <span style={{ width: "100%", textAlign: "center", fontWeight: 400 }}>
-            San Francisco
+            {fullData?.name}
           </span>
         </Box>
         <span style={{ fontSize: "35px" }}>{t("monday")}</span>

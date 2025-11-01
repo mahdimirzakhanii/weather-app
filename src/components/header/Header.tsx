@@ -5,7 +5,11 @@ import MainSelected from "../selected/MainSelected";
 import { useTranslation } from "react-i18next";
 import { useLang } from "../../context/LanguageContext";
 
-const Header = () => {
+interface Props {
+  setTextFa: (value: boolean) => void;
+}
+
+const Header = ({ setTextFa }: Props) => {
   const { theme } = useCustomTheme();
   const { lang } = useLang();
   const { t } = useTranslation();
@@ -76,7 +80,7 @@ const Header = () => {
             },
           }}
         />
-        <MainSelected />
+        <MainSelected setTextFa={setTextFa} />
       </Box>
     </Box>
   );

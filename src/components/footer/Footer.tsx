@@ -14,7 +14,6 @@ const Footer = () => {
   const dateEn = getEnglishDate();
 
   const date = lang === "fa" ? dateFa : dateEn;
-  console.log(date);
   return (
     <Box
       sx={{

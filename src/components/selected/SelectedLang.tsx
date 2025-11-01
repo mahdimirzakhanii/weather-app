@@ -3,8 +3,11 @@ import { useLang } from "../../context/LanguageContext";
 import Box from "@mui/material/Box";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
+interface Props {
+  setTextFa: (value: boolean) => void;
+}
 
-const SelectedLang = () => {
+const SelectedLang = ({ setTextFa }:Props) => {
   const { lang, setLang } = useLang();
   const { i18n, t } = useTranslation();
 
@@ -14,6 +17,7 @@ const SelectedLang = () => {
   ) => {
     if (newValue !== null) {
       setLang(newValue);
+      setTextFa(newValue === "fa" ? true : false);
       i18n.changeLanguage(newValue);
       localStorage.setItem("lang", newValue);
     }
