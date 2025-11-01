@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  Navigate,
-  Outlet,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { useUser } from "./context/UserContext";
 import MainDashboard from "./pages/dashboard/MainDashboard";
@@ -28,6 +22,8 @@ function App() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
         gap: 10,
         backgroundColor: theme.palette.background.default,
       }}
@@ -39,6 +35,9 @@ function App() {
         sx={{
           flex: 1,
           paddingTop: "100px",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "90%",
         }}
       >
         <BrowserRouter>

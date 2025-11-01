@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 const Slider = ({ myArray }) => {
   const { mode } = useCustomTheme();
   const { t } = useTranslation();
-  console.log(myArray);
   return (
     <Swiper
       slidesPerView={3}

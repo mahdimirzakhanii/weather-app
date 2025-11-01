@@ -23,7 +23,7 @@ const Header = () => {
         left: 0,
         zIndex: "50",
         paddingY: 2,
-        paddingX: 5,
+        paddingX: 10,
         backgroundColor: theme.palette.background.default,
         color: theme.palette.text.primary,
         boxShadow: "0px 4px 10px 0px #00000026",
