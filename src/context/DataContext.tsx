@@ -11,6 +11,7 @@ export type TData = {
   weather: IWeatherItems[];
   main: IMainItems;
   dt_txt?: string;
+  dt: number;
   wind: Wind;
 };
 

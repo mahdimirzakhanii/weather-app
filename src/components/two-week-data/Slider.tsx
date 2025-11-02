@@ -3,15 +3,16 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Box from "@mui/material/Box";
 import { useCustomTheme } from "../../context/ThemeContext";
-import { useTranslation } from "react-i18next";
 import { useLang } from "../../context/LanguageContext";
+import type { TData } from "../../context/DataContext";
 
-interface DataProps {}
+interface Props {
+  data: TData[];
+}
 
-const Slider = ({ data }) => {
+const Slider = ({ data }: Props) => {
   const { mode } = useCustomTheme();
   const { lang } = useLang();
-  const { t } = useTranslation();
 
   return (
     <Swiper
