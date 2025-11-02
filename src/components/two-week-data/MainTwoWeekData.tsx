@@ -3,12 +3,34 @@ import { useLang } from "../../context/LanguageContext";
 import { useCustomTheme } from "../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
 import Slider from "./Slider";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import type { Location } from "../../App";
 
-const MainTwoWeekData = () => {
+interface Props {
+  location: Location;
+}
+
+const MainTwoWeekData = ({ location }: Props) => {
   const { mode } = useCustomTheme();
   const { lang } = useLang();
   const { t } = useTranslation();
-  const myArray = Array(20).fill(3);
+  const [dataSlider, setDataSlider] = useState<[]>([]);
+
+  useEffect(() => {
+    const handleDataFiveDay = async () => {
+      try {
+        const res = await axios.get(
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${location?.latitude}&lon=${location?.longitude}&units=metric&appid=b0929da981a188d7739b38288dbfe378`
+        );
+        console.log(res?.data?.list);
+        setDataSlider(res?.data?.list);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    handleDataFiveDay();
+  }, [location]);
 
   return (
     <Box
@@ -49,7 +71,7 @@ const MainTwoWeekData = () => {
           overflowY: "hidden",
         }}
       >
-        <Slider myArray={myArray} />
+        <Slider data={dataSlider} />
       </div>
     </Box>
   );

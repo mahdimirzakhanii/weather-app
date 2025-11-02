@@ -36,7 +36,7 @@ const MainDashboard = ({ setSearch, loading, location }: Props) => {
         <MainChart />
         <MainCurrentData />
       </Box>
-      <MainTwoWeekData />
+      <MainTwoWeekData location={location}/>
     </Box>
   );
 };
