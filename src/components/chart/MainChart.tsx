@@ -57,7 +57,7 @@ const MainChart = ({ loading, location, search }: Props) => {
         backgroundColor: mode === "dark" ? "#292F45" : "surface.200",
       }}
     >
-      <Chart dataChart={dataChart} />
+      <Chart dataChart={dataChart} type="temp" />
     </Box>
   );
 };
