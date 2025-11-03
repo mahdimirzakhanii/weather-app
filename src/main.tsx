@@ -7,17 +7,20 @@ import { ThemeProviderContext } from "./context/ThemeContext.tsx";
 import { UserProvider } from "./context/UserContext.tsx";
 import { LangProvider } from "./context/LanguageContext.tsx";
 import { DataProvider } from "./context/DataContext.tsx";
+import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <UserProvider>
-      <DataProvider>
-        <LangProvider>
-          <ThemeProviderContext>
-            <App />
-          </ThemeProviderContext>
-        </LangProvider>
-      </DataProvider>
-    </UserProvider>
+    <BrowserRouter>
+      <UserProvider>
+        <DataProvider>
+          <LangProvider>
+            <ThemeProviderContext>
+              <App />
+            </ThemeProviderContext>
+          </LangProvider>
+        </DataProvider>
+      </UserProvider>
+    </BrowserRouter>
   </StrictMode>
 );
