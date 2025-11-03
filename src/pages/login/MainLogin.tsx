@@ -2,6 +2,7 @@ import { useCustomTheme } from "../../context/ThemeContext";
 import { useUser } from "../../context/UserContext";
 import { useTranslation } from "react-i18next";
 import { useLang } from "../../context/LanguageContext";
+import i18n from "../../i18n";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -12,18 +13,23 @@ import {
   Select,
   type SelectChangeEvent,
 } from "@mui/material";
-import i18n from "../../i18n";
+import { useState, type MouseEventHandler } from "react";
 
 const MainLogin = () => {
   const { mode } = useCustomTheme();
   const { t } = useTranslation();
   const { lang, setLang } = useLang();
   const { setName } = useUser();
+  const [valueName, setValueName] = useState("");
 
   const handleChange = (event: SelectChangeEvent<"fa" | "en">) => {
     setLang(event.target.value);
     i18n.changeLanguage(event.target.value);
     localStorage.setItem("lang", event.target.value);
+  };
+
+  const handleClickLogin = () => {
+    setName(valueName);
   };
 
   return (
@@ -33,6 +39,8 @@ const MainLogin = () => {
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "column",
+        gap: 3,
+        paddingBottom: 8,
       }}
     >
       <Box
@@ -101,13 +109,15 @@ const MainLogin = () => {
               <span style={{ fontSize: "26px", textAlign: "center" }}>
                 {t("login")}
               </span>
+
               <TextField
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setValueName(e.target.value)}
                 sx={{ width: "100%", direction: lang === "fa" ? "rtl" : "ltr" }}
                 label={t("name-input")}
               />
             </Box>
             <Button
+              onClick={handleClickLogin}
               sx={{ width: "100%", paddingY: "10px" }}
               variant="contained"
             >
@@ -117,11 +127,15 @@ const MainLogin = () => {
         </Box>
       </Box>
 
-      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-        <InputLabel id="demo-select-small-label">Language</InputLabel>
+      <FormControl
+        variant="standard"
+        sx={{ m: 1, minWidth: 120, width: 220 }}
+        size="small"
+      >
+        <InputLabel id="demo-simple-select-standard-label">Language</InputLabel>
         <Select
-          labelId="demo-select-small-label"
-          id="demo-select-small"
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
           value={lang}
           label="Language"
           onChange={handleChange}

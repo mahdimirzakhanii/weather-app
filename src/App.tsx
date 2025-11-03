@@ -1,14 +1,12 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { useUser } from "./context/UserContext";
 import MainDashboard from "./pages/dashboard/MainDashboard";
-import MainHome from "./pages/home/MainHome";
 import MainLogin from "./pages/login/MainLogin";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { useCustomTheme } from "./context/ThemeContext";
 import { useState } from "react";
-
 import { useLang } from "./context/LanguageContext";
 
 export interface Location {
@@ -25,6 +23,10 @@ function App() {
   const [textFa, setTextFa] = useState<boolean>(lang === "fa" ? true : false);
 
   const path = location.pathname === "/" || location.pathname === "/login";
+
+  const ProtectedRoute = () => {
+    return name ? <Outlet /> : <Navigate to="/login" replace />;
+  };
 
   return (
     <Box
@@ -51,14 +53,13 @@ function App() {
         }}
       >
         <Routes>
-          <Route path="/" element={<MainHome />} />
           <Route path="/login" element={<MainLogin />} />
-          {/* <Route element={<ProtectedRoute />}> */}
-          <Route
-            path="/dashboard"
-            element={<MainDashboard textFa={textFa} search={search} />}
-          />
-          {/* </Route> */}
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/dashboard"
+              element={<MainDashboard textFa={textFa} search={search} />}
+            />
+          </Route>
         </Routes>
       </Box>
       {!path && <Footer />}
