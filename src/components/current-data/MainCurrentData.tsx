@@ -6,14 +6,57 @@ import { useLang } from "../../context/LanguageContext";
 import useDataContext from "../../context/DataContext";
 import { getDateTime } from "../date/date";
 
-const MainCurrentData = () => {
+interface Props {
+  loading: boolean;
+  error: boolean;
+}
+
+const MainCurrentData = ({ loading, error }: Props) => {
   const { mode } = useCustomTheme();
   const { lang } = useLang();
   const { fullData } = useDataContext();
   const { t } = useTranslation();
 
   const date = lang === "fa" ? getDateTime("fa") : getDateTime("en");
-  return (
+  return loading ? (
+    <Box
+      sx={{
+        maxWidth: "607px",
+        width: "607px",
+        height: "235px",
+        maxHeight: "235px",
+        borderRadius: "24px",
+        padding: 3,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: lang === "fa" ? "row-reverse" : "row",
+        gap: 3,
+        backgroundColor: mode === "dark" ? "#292F45" : "surface.200",
+      }}
+    >
+      <span>{t("loading")}</span>
+    </Box>
+  ) : error ? (
+    <Box
+      sx={{
+        maxWidth: "607px",
+        width: "607px",
+        height: "235px",
+        maxHeight: "235px",
+        borderRadius: "24px",
+        padding: 3,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: lang === "fa" ? "row-reverse" : "row",
+        gap: 3,
+        backgroundColor: mode === "dark" ? "#292F45" : "surface.200",
+      }}
+    >
+      <span>{t("error")}</span>
+    </Box>
+  ) : (
     <Box
       sx={{
         maxWidth: "607px",

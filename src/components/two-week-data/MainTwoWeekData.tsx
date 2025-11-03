@@ -8,31 +8,78 @@ import axios from "axios";
 import type { Location } from "../../App";
 
 interface Props {
+  search: string;
   location: Location | null;
 }
 
-const MainTwoWeekData = ({ location }: Props) => {
+const MainTwoWeekData = ({ location, search }: Props) => {
   const { mode } = useCustomTheme();
   const { lang } = useLang();
   const { t } = useTranslation();
   const [dataSlider, setDataSlider] = useState<[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const handleDataFiveDay = async () => {
+      setLoading(true);
       try {
         const res = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${location?.latitude}&lon=${location?.longitude}&units=metric&appid=b0929da981a188d7739b38288dbfe378`
+          search
+            ? `https://api.openweathermap.org/data/2.5/forecast?q=${search}&units=metric&appid=b0929da981a188d7739b38288dbfe378`
+            : `https://api.openweathermap.org/data/2.5/forecast?lat=${location?.latitude}&lon=${location?.longitude}&units=metric&appid=b0929da981a188d7739b38288dbfe378`
         );
         console.log(res?.data?.list);
         setDataSlider(res?.data?.list);
+        setError(false);
+        setLoading(false);
       } catch (error) {
         console.log(error);
+        setError(true);
       }
     };
     handleDataFiveDay();
-  }, [location]);
+  }, [location, search]);
 
-  return (
+  return error ? (
+    <Box
+      sx={{
+        width: "100%",
+        height: "380px",
+        maxHeight: "380px",
+        borderRadius: "24px",
+        padding: 3,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+        overflow: "hidden",
+        gap: 3,
+        backgroundColor: mode === "dark" ? "#292F45" : "surface.200",
+      }}
+    >
+      <span>{t("error")}</span>
+    </Box>
+  ) : loading ? (
+    <Box
+      sx={{
+        width: "100%",
+        height: "380px",
+        maxHeight: "380px",
+        borderRadius: "24px",
+        padding: 3,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+        overflow: "hidden",
+        gap: 3,
+        backgroundColor: mode === "dark" ? "#292F45" : "surface.200",
+      }}
+    >
+      <span>Loading...</span>
+    </Box>
+  ) : (
     <Box
       sx={{
         width: "100%",

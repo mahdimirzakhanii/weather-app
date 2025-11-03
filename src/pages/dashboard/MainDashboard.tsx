@@ -9,9 +9,11 @@ type Props = {
   location: Location | null;
   search: string;
   textFa: boolean;
+  loading: boolean;
+  error: boolean;
 };
 
-const MainDashboard = ({ loading, location }: Props) => {
+const MainDashboard = ({ loading, location, search, error }: Props) => {
   const { lang } = useLang();
   return (
     <Box
@@ -32,10 +34,10 @@ const MainDashboard = ({ loading, location }: Props) => {
           gap: 5,
         }}
       >
-        <MainChart />
-        <MainCurrentData />
+        <MainChart loading={loading} />
+        <MainCurrentData error={error} loading={loading} />
       </Box>
-      <MainTwoWeekData location={location} />
+      <MainTwoWeekData search={search} location={location} />
     </Box>
   );
 };

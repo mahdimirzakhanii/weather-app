@@ -26,7 +26,8 @@ function App() {
   const [search, setSearch] = useState<string>("");
   const [textFa, setTextFa] = useState<boolean>(lang === "fa" ? true : false);
   const [location, setLocation] = useState<Location | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     console.log("Getting your location... 🔍");
@@ -60,10 +61,9 @@ function App() {
     );
   }, []);
 
-  console.log(textFa);
-  console.log(lang);
   useEffect(() => {
     const handleGetData = async () => {
+      setLoading(true);
       try {
         const res = await axios.get(
           search
@@ -80,8 +80,11 @@ function App() {
         );
         console.log(res?.data);
         setFullData(res?.data);
+        setError(false);
+        setLoading(false);
       } catch (error) {
         console.log(error);
+        setError(true);
         toast.error("Not Found !", {
           position: "top-center",
           autoClose: 5000,
@@ -137,6 +140,8 @@ function App() {
                 path="/dashboard"
                 element={
                   <MainDashboard
+                    error={error}
+                    loading={loading}
                     search={search}
                     location={location}
                     textFa={textFa}

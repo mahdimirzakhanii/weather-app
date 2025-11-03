@@ -2,7 +2,10 @@ import Box from "@mui/material/Box";
 import { useLang } from "../../context/LanguageContext";
 import { useCustomTheme } from "../../context/ThemeContext";
 
-const MainChart = () => {
+interface Props {
+  loading: boolean;
+}
+const MainChart = ({ loading }: Props) => {
   const { lang } = useLang();
   const { mode } = useCustomTheme();
   return (
