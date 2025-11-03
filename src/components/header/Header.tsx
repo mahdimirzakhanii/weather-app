@@ -5,6 +5,7 @@ import MainSelected from "../selected/MainSelected";
 import { useTranslation } from "react-i18next";
 import { useLang } from "../../context/LanguageContext";
 import { useState } from "react";
+import i18n from "../../i18n";
 
 interface Props {
   setTextFa: (value: boolean) => void;
@@ -13,13 +14,18 @@ interface Props {
 
 const Header = ({ setTextFa, setSearch }: Props) => {
   const { theme } = useCustomTheme();
-  const { lang } = useLang();
+  const { lang, setLang } = useLang();
   const { t } = useTranslation();
   const [searchText, setSearchText] = useState<string>("");
 
   const handleEnterSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setSearch(searchText);
+      const isPersian = /[\u0600-\u06FF]/.test(searchText);
+      setLang(isPersian ? "fa" : "en");
+      localStorage.setItem("lang", isPersian ? "fa" : "en");
+          i18n.changeLanguage(isPersian ? "fa" : "en");
+
     }
   };
 

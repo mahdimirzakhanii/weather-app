@@ -28,75 +28,76 @@ function App() {
   const [location, setLocation] = useState<Location | null>(null);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    console.log("Getting your location... 🔍");
+    setLoading(true);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log("Location found 🎉");
+        setLocation(position.coords);
+      },
+      (error) => {
+        console.error(error);
+        setLoading(false);
+        toast.error("Failed to get location", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          rtl: false,
+          theme: "dark",
+          transition: Slide,
+        });
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0,
+      }
+    );
+  }, []);
 
-  // useEffect(() => {
-  //   console.log("Getting your location... 🔍");
-  //   setLoading(true);
-  //   navigator.geolocation.getCurrentPosition(
-  //     (position) => {
-  //       console.log("Location found 🎉");
-  //       setLocation(position.coords);
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //       setLoading(false);
-  //       toast.error("Failed to get location", {
-  //         position: "top-center",
-  //         autoClose: 5000,
-  //         hideProgressBar: true,
-  //         closeOnClick: true,
-  //         pauseOnHover: false,
-  //         draggable: true,
-  //         progress: undefined,
-  //         rtl: false,
-  //         theme: "dark",
-  //         transition: Slide,
-  //       });
-  //     },
-  //     {
-  //       enableHighAccuracy: true,
-  //       timeout: 10000,
-  //       maximumAge: 0,
-  //     }
-  //   );
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleGetData = async () => {
-  //     try {
-  //       const res = await axios.get(
-  //         search
-  //           ? `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=b0929da981a188d7739b38288dbfe378&units=metric${
-  //               textFa ? "&lang=fa" : "&lang=en"
-  //             }`
-  //           : `https://api.openweathermap.org/data/2.5/weather?lat=${
-  //               location?.latitude
-  //             }&lon=${
-  //               location?.longitude
-  //             }&appid=b0929da981a188d7739b38288dbfe378&units=metric${
-  //               textFa ? "&lang=fa" : "&lang=en"
-  //             }`
-  //       );
-  //       console.log(res?.data);
-  //       setFullData(res?.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //       toast.error("Not Found !", {
-  //         position: "top-center",
-  //         autoClose: 5000,
-  //         hideProgressBar: true,
-  //         closeOnClick: true,
-  //         pauseOnHover: false,
-  //         draggable: true,
-  //         progress: undefined,
-  //         rtl: false,
-  //         theme: "dark",
-  //         transition: Slide,
-  //       });
-  //     }
-  //   };
-  //   handleGetData();
-  // }, [location, search, textFa, setFullData]);
+  console.log(textFa);
+  console.log(lang);
+  useEffect(() => {
+    const handleGetData = async () => {
+      try {
+        const res = await axios.get(
+          search
+            ? `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=b0929da981a188d7739b38288dbfe378&units=metric${
+                lang === "fa" ? "&lang=fa" : "&lang=en"
+              }`
+            : `https://api.openweathermap.org/data/2.5/weather?lat=${
+                location?.latitude
+              }&lon=${
+                location?.longitude
+              }&appid=b0929da981a188d7739b38288dbfe378&units=metric${
+                lang === "fa" ? "&lang=fa" : "&lang=en"
+              }`
+        );
+        console.log(res?.data);
+        setFullData(res?.data);
+      } catch (error) {
+        console.log(error);
+        toast.error("Not Found !", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          rtl: false,
+          theme: "dark",
+          transition: Slide,
+        });
+      }
+    };
+    handleGetData();
+  }, [location, search, textFa, setFullData]);
 
   // const ProtectedRoute = () => {
   //   return name ? <Outlet /> : <Navigate to="/login" replace />;
@@ -115,7 +116,7 @@ function App() {
           backgroundColor: theme.palette.background.default,
         }}
       >
-        <Header  setSearch={setSearch} setTextFa={setTextFa} />
+        <Header setSearch={setSearch} setTextFa={setTextFa} />
 
         <Box
           component="main"

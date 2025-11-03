@@ -8,7 +8,7 @@ import axios from "axios";
 import type { Location } from "../../App";
 
 interface Props {
-  location: Location;
+  location: Location | null;
 }
 
 const MainTwoWeekData = ({ location }: Props) => {

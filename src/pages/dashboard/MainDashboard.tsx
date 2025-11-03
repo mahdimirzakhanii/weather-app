@@ -11,7 +11,7 @@ type Props = {
   textFa: boolean;
 };
 
-const MainDashboard = ({  loading, location }: Props) => {
+const MainDashboard = ({ loading, location }: Props) => {
   const { lang } = useLang();
   return (
     <Box
@@ -35,7 +35,7 @@ const MainDashboard = ({  loading, location }: Props) => {
         <MainChart />
         <MainCurrentData />
       </Box>
-      <MainTwoWeekData location={location}/>
+      <MainTwoWeekData location={location} />
     </Box>
   );
 };
