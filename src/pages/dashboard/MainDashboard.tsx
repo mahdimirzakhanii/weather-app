@@ -114,7 +114,7 @@ const MainDashboard = ({ search, textFa }: Props) => {
             gap: 5,
           }}
         >
-          <MainChart loading={loading} />
+          <MainChart search={search}  location={location} loading={loading} />
           <MainCurrentData error={error} loading={loading} />
         </Box>
         <MainTwoWeekData search={search} location={location} />

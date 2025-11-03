@@ -13,6 +13,7 @@ const UserContext = createContext<UserContext>({
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [name, setName] = useState<string | null>(localStorage.getItem("user"));
 
+  
   return (
     <UserContext.Provider value={{ name, setName }}>
       {children}

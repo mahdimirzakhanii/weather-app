@@ -13,13 +13,15 @@ import {
   Select,
   type SelectChangeEvent,
 } from "@mui/material";
-import { useState, type MouseEventHandler } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MainLogin = () => {
   const { mode } = useCustomTheme();
   const { t } = useTranslation();
   const { lang, setLang } = useLang();
   const { setName } = useUser();
+  const navigate = useNavigate();
   const [valueName, setValueName] = useState("");
 
   const handleChange = (event: SelectChangeEvent<"fa" | "en">) => {
@@ -30,6 +32,8 @@ const MainLogin = () => {
 
   const handleClickLogin = () => {
     setName(valueName);
+    localStorage.setItem("user", valueName);
+    navigate("/dashboard");
   };
 
   return (
