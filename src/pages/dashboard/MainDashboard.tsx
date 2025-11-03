@@ -9,10 +9,9 @@ type Props = {
   location: Location | null;
   search: string;
   textFa: boolean;
-  setSearch: (value: string) => void;
 };
 
-const MainDashboard = ({ setSearch, loading, location }: Props) => {
+const MainDashboard = ({  loading, location }: Props) => {
   const { lang } = useLang();
   return (
     <Box

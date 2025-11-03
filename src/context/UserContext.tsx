@@ -13,14 +13,8 @@ const UserContext = createContext<UserContext>({
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [name, setName] = useState<string | null>(localStorage.getItem("user"));
 
-  const handleSetName = (value: string | null) => {
-    setName(value);
-    if (value) {
-      localStorage.setItem("user", value);
-    }
-  };
   return (
-    <UserContext.Provider value={{ name, setName: handleSetName }}>
+    <UserContext.Provider value={{ name, setName }}>
       {children}
     </UserContext.Provider>
   );

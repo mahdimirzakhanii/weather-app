@@ -13,7 +13,6 @@ const MainCurrentData = () => {
   const { t } = useTranslation();
 
   const date = lang === "fa" ? getDateTime("fa") : getDateTime("en");
-  console.log();
   return (
     <Box
       sx={{
