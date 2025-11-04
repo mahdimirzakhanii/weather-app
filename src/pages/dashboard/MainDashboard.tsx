@@ -9,6 +9,7 @@ import useDataContext from "../../context/DataContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { useUser } from "../../context/UserContext";
 
 type Props = {
   search: string;
@@ -17,23 +18,24 @@ type Props = {
 
 const MainDashboard = ({ search, textFa }: Props) => {
   const { lang } = useLang();
+  const { name } = useUser();
   const { t } = useTranslation();
   const { setFullData } = useDataContext();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [errorLocation, setErrorLocation] = useState(true);
   const [location, setLocation] = useState<Location | null>(null);
-
   useEffect(() => {
     console.log("Getting your location... ");
-    setLoading(true);
     navigator.geolocation.getCurrentPosition(
       (position) => {
         console.log("Location found ");
         setLocation(position.coords);
+        setErrorLocation(false);
       },
       (error) => {
         console.error(error);
-        setLoading(false);
+        setErrorLocation(true);
         toast.error(t("error-toast"), {
           position: "top-center",
           autoClose: 5000,
@@ -56,6 +58,7 @@ const MainDashboard = ({ search, textFa }: Props) => {
   }, []);
 
   useEffect(() => {
+    if (!location || !name) return;
     const handleGetData = async () => {
       setLoading(true);
       try {
@@ -82,7 +85,7 @@ const MainDashboard = ({ search, textFa }: Props) => {
       }
     };
     handleGetData();
-  }, [location, search, textFa, setFullData]);
+  }, [location, search, name, textFa, lang, setFullData]);
 
   return (
     <>
@@ -104,10 +107,10 @@ const MainDashboard = ({ search, textFa }: Props) => {
             gap: 5,
           }}
         >
-          <MainChart search={search} location={location} loading={loading} />
+          <MainChart search={search} location={location} />
           <MainCurrentData error={error} loading={loading} />
         </Box>
-        <MainTwoWeekData search={search} location={location} />
+        <MainTwoWeekData errorLocation={errorLocation} search={search} location={location} />
       </Box>
 
       <ToastContainer

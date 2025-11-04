@@ -18,26 +18,7 @@ const MainCurrentData = ({ loading, error }: Props) => {
   const { t } = useTranslation();
 
   const date = lang === "fa" ? getDateTime("fa") : getDateTime("en");
-  return loading ? (
-    <Box
-      sx={{
-        maxWidth: "607px",
-        width: "607px",
-        height: "235px",
-        maxHeight: "235px",
-        borderRadius: "24px",
-        padding: 3,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: lang === "fa" ? "row-reverse" : "row",
-        gap: 3,
-        backgroundColor: mode === "dark" ? "#292F45" : "surface.200",
-      }}
-    >
-      <span>{t("loading")}</span>
-    </Box>
-  ) : error ? (
+  return error ? (
     <Box
       sx={{
         maxWidth: "607px",
@@ -55,6 +36,25 @@ const MainCurrentData = ({ loading, error }: Props) => {
       }}
     >
       <span>{t("error")}</span>
+    </Box>
+  ) : loading ? (
+    <Box
+      sx={{
+        maxWidth: "607px",
+        width: "607px",
+        height: "235px",
+        maxHeight: "235px",
+        borderRadius: "24px",
+        padding: 3,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: lang === "fa" ? "row-reverse" : "row",
+        gap: 3,
+        backgroundColor: mode === "dark" ? "#292F45" : "surface.200",
+      }}
+    >
+      <span>{t("loading")}</span>
     </Box>
   ) : (
     <Box
@@ -185,7 +185,9 @@ const MainCurrentData = ({ loading, error }: Props) => {
         }}
       >
         <img src="/image/dashboard/cloudy.png" alt="" />
-        <span style={{ fontSize: "32px", fontWeight: "400" , whiteSpace:'nowrap' }}>
+        <span
+          style={{ fontSize: "32px", fontWeight: "400", whiteSpace: "nowrap" }}
+        >
           {fullData?.weather[0]?.description}
         </span>
         <span

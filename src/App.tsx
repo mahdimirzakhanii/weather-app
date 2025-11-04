@@ -25,7 +25,10 @@ function App() {
   const path = location.pathname === "/" || location.pathname === "/login";
 
   const ProtectedRoute = () => {
-    return name ? <Outlet /> : <Navigate to="/login" replace />;
+    if (!name || location.pathname === "/") {
+      return <Navigate to="/login" replace />;
+    }
+    return <Outlet />;
   };
 
   return (

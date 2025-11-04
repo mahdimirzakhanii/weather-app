@@ -6,21 +6,25 @@ import Slider from "./Slider";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import type { Location } from "../../App";
+import { useUser } from "../../context/UserContext";
 
 interface Props {
   search: string;
   location: Location | null;
+  errorLocation: boolean;
 }
 
-const MainTwoWeekData = ({ location, search }: Props) => {
+const MainTwoWeekData = ({ location, search, errorLocation }: Props) => {
   const { mode } = useCustomTheme();
   const { lang } = useLang();
+  const { name } = useUser();
   const { t } = useTranslation();
   const [dataSlider, setDataSlider] = useState<[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    if (errorLocation) return;
     const handleDataFiveDay = async () => {
       setLoading(true);
       try {
@@ -32,14 +36,16 @@ const MainTwoWeekData = ({ location, search }: Props) => {
         console.log(res?.data?.list);
         setDataSlider(res?.data?.list);
         setError(false);
-        setLoading(false);
       } catch (error) {
         console.log(error);
         setError(true);
+      } finally {
+        setLoading(false);
       }
     };
     handleDataFiveDay();
-  }, [location, search]);
+  }, [location, search, name, errorLocation]);
+
 
   return error ? (
     <Box
@@ -77,7 +83,7 @@ const MainTwoWeekData = ({ location, search }: Props) => {
         backgroundColor: mode === "dark" ? "#292F45" : "surface.200",
       }}
     >
-      <span>Loading...</span>
+      <span>{t("loading")}</span>
     </Box>
   ) : (
     <Box
