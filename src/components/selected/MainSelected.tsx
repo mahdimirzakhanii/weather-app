@@ -9,6 +9,7 @@ import Divider from "@mui/material/Divider";
 import { useCustomTheme } from "../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { useLang } from "../../context/LanguageContext";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   setTextFa: (value: boolean) => void;
@@ -27,12 +28,11 @@ const MainSelected = ({ setTextFa }: Props) => {
     setAnchorEl(null);
   };
 
-  // useEffect(() => {
-    const handleExit = () => {
-      localStorage.removeItem("user");
-      window.location.reload()
-    };
-  // });
+  const navigate = useNavigate();
+  const handleExit = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
   return (
     <div>
