@@ -1,5 +1,4 @@
-import "swiper/css";
-import "swiper/css/pagination";
+import 'swiper/swiper-bundle.css';
 import { Swiper, SwiperSlide } from "swiper/react";
 import Box from "@mui/material/Box";
 import { useCustomTheme } from "../../context/ThemeContext";
@@ -105,10 +104,9 @@ const Slider = ({ data }: Props) => {
                     ? "/image/weather/Frame 30.svg"
                     : undefined
                 }
-                
                 alt=""
               />
-              
+
               <div>
                 <span style={{ fontSize: "18px" }}>
                   {String(item?.main?.temp)?.slice(0, 2)}
