@@ -136,7 +136,7 @@ const MainLogin = () => {
         sx={{ m: 1, minWidth: 120, width: 220 }}
         size="small"
       >
-        <InputLabel id="demo-simple-select-standard-label">Language</InputLabel>
+        <InputLabel id="demo-simple-select-standard-label">{t("language")}</InputLabel>
         <Select
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
