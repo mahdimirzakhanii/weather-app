@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectedTheme from "./SelectedTheme";
 import SelectedLang from "./SelectedLang";
 import Button from "@mui/material/Button";
@@ -26,6 +26,13 @@ const MainSelected = ({ setTextFa }: Props) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  // useEffect(() => {
+    const handleExit = () => {
+      localStorage.removeItem("user");
+      window.location.reload()
+    };
+  // });
 
   return (
     <div>
@@ -84,6 +91,7 @@ const MainSelected = ({ setTextFa }: Props) => {
         />
 
         <Button
+          onClick={handleExit}
           variant="text"
           dir={lang === "fa" ? "rtl" : "ltr"}
           sx={(theme) => ({
