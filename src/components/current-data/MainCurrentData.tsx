@@ -185,7 +185,7 @@ const MainCurrentData = ({ loading, error }: Props) => {
         }}
       >
         <img src="/image/dashboard/cloudy.png" alt="" />
-        <span style={{ fontSize: "32px", fontWeight: "400" }}>
+        <span style={{ fontSize: "32px", fontWeight: "400" , whiteSpace:'nowrap' }}>
           {fullData?.weather[0]?.description}
         </span>
         <span

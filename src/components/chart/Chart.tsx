@@ -1,6 +1,7 @@
 // Chart.tsx
 import { LineChart } from "@mui/x-charts/LineChart";
 import type { TData } from "../../context/DataContext";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   dataChart: TData[];
@@ -8,8 +9,11 @@ interface Props {
 }
 
 const Chart = ({ dataChart, type = "temp" }: Props) => {
+  const { t } = useTranslation();
   if (!dataChart || dataChart.length === 0) {
-    return <div style={{ textAlign: "center" }}>Loading chart...</div>;
+    return (
+      <div style={{ textAlign: "center", width: "100%" }}>{t("loading")}</div>
+    );
   }
 
   const xData: number[] = dataChart.map((d) => {
@@ -50,7 +54,15 @@ const Chart = ({ dataChart, type = "temp" }: Props) => {
   }
 
   return (
-    <div style={{ width: "100%", maxHeight: 250 }}>
+    <div
+      style={{
+        width: "100%",
+        maxHeight: 250,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <LineChart
         xAxis={[
           {

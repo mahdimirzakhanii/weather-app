@@ -13,7 +13,7 @@ interface Props {
   location: Location | null;
 }
 
-const MainChart = ({ loading, location, search }: Props) => {
+const   MainChart = ({ loading, location, search }: Props) => {
   const { lang } = useLang();
   const { mode } = useCustomTheme();
   const [dataChart, setDataChart] = useState<TData[]>([]);

@@ -26,5 +26,6 @@
   "two-week-forecast": "2 weeks Forecast",
   "text-footer": "All rights of this site are reserved for Nadin Sadr Aria Engineering Company.",
   "contactus": "contact us : ",
-  "name-input": "Enter Your Name"
+  "name-input": "Enter Your Name",
+  "error-toast": "Failed to get location"
 }

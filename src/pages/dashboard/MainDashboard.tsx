@@ -8,6 +8,7 @@ import { Slide, toast, ToastContainer } from "react-toastify";
 import useDataContext from "../../context/DataContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   search: string;
@@ -16,6 +17,7 @@ type Props = {
 
 const MainDashboard = ({ search, textFa }: Props) => {
   const { lang } = useLang();
+  const { t } = useTranslation();
   const { setFullData } = useDataContext();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -32,7 +34,7 @@ const MainDashboard = ({ search, textFa }: Props) => {
       (error) => {
         console.error(error);
         setLoading(false);
-        toast.error("Failed to get location", {
+        toast.error(t("error-toast"), {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: true,
@@ -40,7 +42,7 @@ const MainDashboard = ({ search, textFa }: Props) => {
           pauseOnHover: false,
           draggable: true,
           progress: undefined,
-          rtl: false,
+          rtl: lang === "fa" ? true : false,
           theme: "dark",
           transition: Slide,
         });
@@ -77,18 +79,6 @@ const MainDashboard = ({ search, textFa }: Props) => {
       } catch (error) {
         console.log(error);
         setError(true);
-        toast.error("Not Found !", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          rtl: false,
-          theme: "dark",
-          transition: Slide,
-        });
       }
     };
     handleGetData();
@@ -114,7 +104,7 @@ const MainDashboard = ({ search, textFa }: Props) => {
             gap: 5,
           }}
         >
-          <MainChart search={search}  location={location} loading={loading} />
+          <MainChart search={search} location={location} loading={loading} />
           <MainCurrentData error={error} loading={loading} />
         </Box>
         <MainTwoWeekData search={search} location={location} />
