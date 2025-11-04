@@ -12,7 +12,7 @@ const SelectedTheme = () => {
   const { t } = useTranslation();
 
   const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
+    _: React.MouseEvent<HTMLElement>,
     newValue: "dark" | "light"
   ) => {
     setMode(newValue);

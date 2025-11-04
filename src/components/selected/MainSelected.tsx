@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SelectedTheme from "./SelectedTheme";
 import SelectedLang from "./SelectedLang";
 import Button from "@mui/material/Button";

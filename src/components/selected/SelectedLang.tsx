@@ -12,16 +12,17 @@ const SelectedLang = ({ setTextFa }: Props) => {
   const { i18n, t } = useTranslation();
 
   const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
+    _: React.MouseEvent<HTMLElement>,
     newValue: "fa" | "en"
   ) => {
     if (newValue !== null) {
       setLang(newValue);
-      setTextFa(newValue === "fa" ? true : false);
+      setTextFa(newValue === "fa");
       i18n.changeLanguage(newValue);
       localStorage.setItem("lang", newValue);
     }
   };
+
   return (
     <Box
       sx={{

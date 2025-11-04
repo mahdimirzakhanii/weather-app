@@ -1,6 +1,6 @@
 import { blue, green, orange, red } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext,  useState } from "react";
 import type { PaletteMode, Theme } from "@mui/material/styles";
 import "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
