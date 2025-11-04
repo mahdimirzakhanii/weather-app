@@ -5,7 +5,7 @@ It allows users to search for a city and view real-time weather information.
 
 ## 🌍 Live Demo
 
-🔗 [View on Vercel](https://your-vercel-link.vercel.app/)
+🔗 [View on Vercel](https://weather-app-mahdi-mirzakhani.vercel.app/)
 
 ## ✨ Features
 
@@ -29,7 +29,7 @@ It allows users to search for a city and view real-time weather information.
 ## ⚙️ Installation
 
 1. Clone the repository:
-   git clone https://github.com/yourusername/weather-app.git
+   git clone https://github.com/mahdimirzakhanii/weather-app.git
 
 2. Go to the project folder:
    cd weather-app
