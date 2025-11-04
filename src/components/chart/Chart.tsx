@@ -2,19 +2,16 @@
 import { LineChart } from "@mui/x-charts/LineChart";
 import type { TData } from "../../context/DataContext";
 import { useTranslation } from "react-i18next";
-import type { Location } from "../../App";
 
 interface Props {
   dataChart: TData[];
   type?: "temp" | "feels_like" | "humidity" | "pressure";
-  location: Location | null;
   error: boolean;
 }
 
-const Chart = ({ dataChart, type = "temp", location, error }: Props) => {
-  console.log(location);
+const Chart = ({ dataChart, type = "temp",  error }: Props) => {
   const { t } = useTranslation();
-  if (!dataChart || dataChart.length === 0 || !location) {
+  if (!dataChart || dataChart.length === 0) {
     <div style={{ textAlign: "center", width: "100%" }}>{t("loading")}</div>;
   }
   const xData: number[] = dataChart.map((d) => {
@@ -46,7 +43,7 @@ const Chart = ({ dataChart, type = "temp", location, error }: Props) => {
     }
   }
 
-  if (error || !location) {
+  if (error) {
     console.warn("Chart: no valid points to render", {
       xDataSlice: xData.slice(0, 5),
       yDataSlice: yData.slice(0, 5),

@@ -90,7 +90,7 @@ const MainSelected = ({ setTextFa }: Props) => {
             width: "100%",
             paddingX: 3,
             display: "flex",
-            gap: lang === "fa" ? 2 : 0,
+            gap: lang === "fa" ? 0 : 2,
             justifyContent: "start",
             color: theme.palette.text.primary,
             "&:hover": {

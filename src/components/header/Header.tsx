@@ -24,8 +24,7 @@ const Header = ({ setTextFa, setSearch }: Props) => {
       const isPersian = /[\u0600-\u06FF]/.test(searchText);
       setLang(isPersian ? "fa" : "en");
       localStorage.setItem("lang", isPersian ? "fa" : "en");
-          i18n.changeLanguage(isPersian ? "fa" : "en");
-
+      i18n.changeLanguage(isPersian ? "fa" : "en");
     }
   };
 
@@ -76,9 +75,6 @@ const Header = ({ setTextFa, setSearch }: Props) => {
           variant="outlined"
           size="small"
           sx={{
-            "& input": {
-              direction: "rtl",
-            },
             "& .MuiOutlinedInput-root": {
               height: 40,
               width: "290px",

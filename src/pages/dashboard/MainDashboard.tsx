@@ -57,8 +57,11 @@ const MainDashboard = ({ search, textFa }: Props) => {
     );
   }, []);
 
+  console.log(search);
+  console.log(location);
+
   useEffect(() => {
-    if (!location || !name) return;
+    if (!name) return;
     const handleGetData = async () => {
       setLoading(true);
       try {

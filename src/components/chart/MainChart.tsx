@@ -33,7 +33,6 @@ const MainChart = ({ location, search }: Props) => {
                 lang === "fa" ? "&lang=fa" : "&lang=en"
               }`
         );
-        console.log(res?.data?.list);
         setDataChart(res.data.list);
         setError(false);
       } catch (error) {
@@ -54,17 +53,12 @@ const MainChart = ({ location, search }: Props) => {
         padding: 3,
         display: "flex",
         alignItems: "center",
-                flexDirection: lang === "fa" ? "row-reverse" : "row",
+        flexDirection: lang === "fa" ? "row-reverse" : "row",
         justifyContent: "space-between",
         backgroundColor: mode === "dark" ? "#292F45" : "surface.200",
       }}
     >
-      <Chart
-        location={location}
-        error={error}
-        dataChart={dataChart}
-        type="temp"
-      />
+      <Chart error={error} dataChart={dataChart} type="temp" />
     </Box>
   );
 };

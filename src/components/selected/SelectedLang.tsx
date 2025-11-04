@@ -7,7 +7,7 @@ interface Props {
   setTextFa: (value: boolean) => void;
 }
 
-const SelectedLang = ({ setTextFa }:Props) => {
+const SelectedLang = ({ setTextFa }: Props) => {
   const { lang, setLang } = useLang();
   const { i18n, t } = useTranslation();
 

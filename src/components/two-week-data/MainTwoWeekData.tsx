@@ -24,7 +24,6 @@ const MainTwoWeekData = ({ location, search, errorLocation }: Props) => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (errorLocation) return;
     const handleDataFiveDay = async () => {
       setLoading(true);
       try {
@@ -33,11 +32,9 @@ const MainTwoWeekData = ({ location, search, errorLocation }: Props) => {
             ? `https://api.openweathermap.org/data/2.5/forecast?q=${search}&units=metric&appid=b0929da981a188d7739b38288dbfe378`
             : `https://api.openweathermap.org/data/2.5/forecast?lat=${location?.latitude}&lon=${location?.longitude}&units=metric&appid=b0929da981a188d7739b38288dbfe378`
         );
-        console.log(res?.data?.list);
         setDataSlider(res?.data?.list);
         setError(false);
       } catch (error) {
-        console.log(error);
         setError(true);
       } finally {
         setLoading(false);
@@ -45,7 +42,6 @@ const MainTwoWeekData = ({ location, search, errorLocation }: Props) => {
     };
     handleDataFiveDay();
   }, [location, search, name, errorLocation]);
-
 
   return error ? (
     <Box
