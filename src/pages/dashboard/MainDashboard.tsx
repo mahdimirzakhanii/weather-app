@@ -104,13 +104,17 @@ const MainDashboard = ({ search, textFa }: Props) => {
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: lang === "fa" ? "row" : "row-reverse",
-            gap: 5,
+            gap: 2,
           }}
         >
           <MainChart search={search} location={location} />
           <MainCurrentData error={error} loading={loading} />
         </Box>
-        <MainTwoWeekData errorLocation={errorLocation} search={search} location={location} />
+        <MainTwoWeekData
+          errorLocation={errorLocation}
+          search={search}
+          location={location}
+        />
       </Box>
 
       <ToastContainer

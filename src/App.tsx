@@ -8,6 +8,7 @@ import Footer from "./components/footer/Footer";
 import { useCustomTheme } from "./context/ThemeContext";
 import { useState } from "react";
 import { useLang } from "./context/LanguageContext";
+import MainHome from "./pages/home/MainHome";
 
 export interface Location {
   latitude: number;
@@ -57,6 +58,7 @@ function App() {
       >
         <Routes>
           <Route path="/login" element={<MainLogin />} />
+          <Route path="/" element={<MainHome />} />
           <Route element={<ProtectedRoute />}>
             <Route
               path="/dashboard"

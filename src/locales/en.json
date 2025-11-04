@@ -1,5 +1,6 @@
 {
   "login": "Login",
+  "go-login": "Click here to go to the login page.",
   "enter_name": "Enter your name",
   "logout": "Logout",
   "weather_dashboard": "Weather Dashboard",

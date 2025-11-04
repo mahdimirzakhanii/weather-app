@@ -47,14 +47,14 @@ const MainChart = ({ location, search }: Props) => {
   return (
     <Box
       sx={{
-        maxWidth: "775px",
-        width: "775px",
+        minWidth: "60%",
+        width: "60%",
         height: "235px",
         borderRadius: "24px",
         padding: 3,
         display: "flex",
         alignItems: "center",
-        flexDirection: lang === "fa" ? "row-reverse" : "row",
+                flexDirection: lang === "fa" ? "row-reverse" : "row",
         justifyContent: "space-between",
         backgroundColor: mode === "dark" ? "#292F45" : "surface.200",
       }}

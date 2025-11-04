@@ -21,8 +21,8 @@ const MainCurrentData = ({ loading, error }: Props) => {
   return error ? (
     <Box
       sx={{
-        maxWidth: "607px",
-        width: "607px",
+        maxWidth: "37%",
+        width: "37%",
         height: "235px",
         maxHeight: "235px",
         borderRadius: "24px",
@@ -40,8 +40,8 @@ const MainCurrentData = ({ loading, error }: Props) => {
   ) : loading ? (
     <Box
       sx={{
-        maxWidth: "607px",
-        width: "607px",
+        minWidth: "37%",
+        width: "37%",
         height: "235px",
         maxHeight: "235px",
         borderRadius: "24px",
@@ -59,8 +59,8 @@ const MainCurrentData = ({ loading, error }: Props) => {
   ) : (
     <Box
       sx={{
-        maxWidth: "607px",
-        width: "607px",
+        minWidth: "37%",
+        width: "37%",
         height: "235px",
         maxHeight: "235px",
         borderRadius: "24px",
