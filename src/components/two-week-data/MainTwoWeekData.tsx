@@ -23,18 +23,21 @@ const MainTwoWeekData = ({ location, search, errorLocation }: Props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+
   useEffect(() => {
     const handleDataFiveDay = async () => {
       setLoading(true);
       try {
         const res = await axios.get(
           search
-            ? `https://api.openweathermap.org/data/2.5/forecast?q=${search}&units=metric&appid=b0929da981a188d7739b38288dbfe378`
-            : `https://api.openweathermap.org/data/2.5/forecast?lat=${location?.latitude}&lon=${location?.longitude}&units=metric&appid=b0929da981a188d7739b38288dbfe378`
+            ? `https://api.openweathermap.org/data/2.5/forecast?q=${search}&units=metric&appid=${apiKey}`
+            : `https://api.openweathermap.org/data/2.5/forecast?lat=${location?.latitude}&lon=${location?.longitude}&units=metric&appid=${apiKey}`
         );
         setDataSlider(res?.data?.list);
         setError(false);
       } catch (error) {
+        console.log(error)
         setError(true);
       } finally {
         setLoading(false);

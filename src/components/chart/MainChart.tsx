@@ -17,19 +17,22 @@ const MainChart = ({ location, search }: Props) => {
   const { mode } = useCustomTheme();
   const [dataChart, setDataChart] = useState<TData[]>([]);
   const [error, setError] = useState(false);
+
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+
   useEffect(() => {
     const handleDataChart = async () => {
       try {
         const res = await axios.get(
           search
-            ? `https://api.openweathermap.org/data/2.5/forecast?q=${search}&appid=b0929da981a188d7739b38288dbfe378&units=metric${
+            ? `https://api.openweathermap.org/data/2.5/forecast?q=${search}&appid=${apiKey}&units=metric${
                 lang === "fa" ? "&lang=fa" : "&lang=en"
               }`
             : `https://api.openweathermap.org/data/2.5/forecast?lat=${
                 location?.latitude
               }&lon=${
                 location?.longitude
-              }&appid=b0929da981a188d7739b38288dbfe378&units=metric${
+              }&appid=${apiKey}&units=metric${
                 lang === "fa" ? "&lang=fa" : "&lang=en"
               }`
         );

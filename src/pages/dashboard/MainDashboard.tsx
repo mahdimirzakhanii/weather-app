@@ -59,6 +59,8 @@ const MainDashboard = ({ search, textFa }: Props) => {
     );
   }, []);
 
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+
   useEffect(() => {
     if (!name) return;
     const handleGetData = async () => {
@@ -66,18 +68,15 @@ const MainDashboard = ({ search, textFa }: Props) => {
       try {
         const res = await axios.get(
           search
-            ? `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=b0929da981a188d7739b38288dbfe378&units=metric${
+            ? `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${apiKey}&units=metric${
                 lang === "fa" ? "&lang=fa" : "&lang=en"
               }`
             : `https://api.openweathermap.org/data/2.5/weather?lat=${
                 location?.latitude
-              }&lon=${
-                location?.longitude
-              }&appid=b0929da981a188d7739b38288dbfe378&units=metric${
+              }&lon=${location?.longitude}&appid=${apiKey}&units=metric${
                 lang === "fa" ? "&lang=fa" : "&lang=en"
               }`
         );
-        console.log(res?.data);
         setFullData(res?.data);
         setError(false);
         setLoading(false);
