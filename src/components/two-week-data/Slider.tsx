@@ -91,10 +91,24 @@ const Slider = ({ data }: Props) => {
               </div>
 
               <img
-                src="/image/dashboard/cloudy.png"
-                style={{ width: "70px" }}
+                src={
+                  item?.weather[0]?.main === "Thunderstorm"
+                    ? "/image/weather/Frame 37.svg"
+                    : item?.weather[0]?.main === "Drizzle" ||
+                      item?.weather[0]?.main === "Rain"
+                    ? "/image/weather/Frame 35.svg"
+                    : item?.weather[0]?.main === "Snow"
+                    ? "/image/weather/snow.png"
+                    : item?.weather[0]?.main === "Clear"
+                    ? "/image/weather/Frame 34.svg"
+                    : item?.weather[0]?.main === "Clouds"
+                    ? "/image/weather/Frame 30.svg"
+                    : undefined
+                }
+                
                 alt=""
               />
+              
               <div>
                 <span style={{ fontSize: "18px" }}>
                   {String(item?.main?.temp)?.slice(0, 2)}

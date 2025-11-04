@@ -184,7 +184,25 @@ const MainCurrentData = ({ loading, error }: Props) => {
           gap: 1,
         }}
       >
-        <img src="/image/dashboard/cloudy.png" alt="" />
+        {
+          <img
+            src={
+              fullData?.weather[0]?.main === "Thunderstorm"
+                ? "/image/weather/Frame 37.svg"
+                : fullData?.weather[0]?.main === "Drizzle" ||
+                  fullData?.weather[0]?.main === "Rain"
+                ? "/image/weather/Frame 35.svg"
+                : fullData?.weather[0]?.main === "Snow"
+                ? "/image/weather/snow.png"
+                : fullData?.weather[0]?.main === "Clear"
+                ? "/image/weather/Frame 34.svg"
+                : fullData?.weather[0]?.main === "Clouds" 
+                ? "/image/weather/Frame 30.svg"
+                : undefined
+            }
+            alt=""
+          />
+        }
         <span
           style={{ fontSize: "32px", fontWeight: "400", whiteSpace: "nowrap" }}
         >
