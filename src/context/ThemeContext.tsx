@@ -38,8 +38,6 @@ export const ThemeProviderContext = ({
     return stored === "dark" || stored === "light" ? stored : "light";
   });
 
-  // const lang = localStorage.getItem("lang") || "en";
-
   const theme = createTheme({
     direction: lang === "fa" ? "rtl" : "ltr",
     typography: {
@@ -83,10 +81,6 @@ export const ThemeProviderContext = ({
       },
     },
   });
-
-  useEffect(() => {
-    document.dir = lang === "fa" ? "rtl" : "ltr";
-  }, [lang]);
 
   return (
     <ThemeContext.Provider value={{ mode, setMode, theme }}>

@@ -37,6 +37,7 @@ const SelectedLang = ({ setTextFa }: Props) => {
       </span>
 
       <ToggleButtonGroup
+        dir={lang === "fa" ? "rtl" : "ltr"}
         value={lang}
         exclusive
         onChange={handleAlignment}

@@ -34,6 +34,7 @@ const SelectedTheme = () => {
       </span>
 
       <ToggleButtonGroup
+        dir={lang === "fa" ? "rtl" : "ltr"}
         value={mode}
         exclusive
         onChange={handleAlignment}

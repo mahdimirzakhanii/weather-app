@@ -25,7 +25,9 @@ const MainDashboard = ({ search, textFa }: Props) => {
   const [error, setError] = useState(false);
   const [errorLocation, setErrorLocation] = useState(true);
   const [location, setLocation] = useState<Location | null>(null);
+
   useEffect(() => {
+    if (search) return;
     console.log("Getting your location... ");
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -56,9 +58,6 @@ const MainDashboard = ({ search, textFa }: Props) => {
       }
     );
   }, []);
-
-  console.log(search);
-  console.log(location);
 
   useEffect(() => {
     if (!name) return;
